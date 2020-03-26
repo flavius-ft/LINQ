@@ -1,0 +1,6 @@
+﻿namespace MyLinqProject
+{
+    class Program
+    {
+    }
+}
