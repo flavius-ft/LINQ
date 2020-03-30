@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MyLinqProject
 {
-    public static class Linq
+    public static class MyLinq
     {
         public static bool All<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
@@ -14,13 +14,13 @@ namespace MyLinqProject
 
             foreach (var elem in source)
             {
-                if (elem.Equals(predicate))
+                if (!predicate(elem))
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
     }
 }
