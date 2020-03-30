@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace MyLinqProject
 {
@@ -11,6 +12,15 @@ namespace MyLinqProject
             bool IsEven(int element) => element % 2 == 0;
 
             Assert.True(evenNumbers.All(IsEven));
+        }
+
+        [Fact]
+        public void ArgumentNullExceptionWhenTheArrayAndPredicatAreNull()
+        {
+            string[] elements = null;
+            bool IsEven(string element) => element == null;
+
+            Assert.Throws<ArgumentNullException>(() => elements.All(IsEven));
         }
 
         [Fact]
@@ -29,7 +39,7 @@ namespace MyLinqProject
             int[] evenNumbers = { 1, 4, 5, 8 };
             bool IsEven(int element) => element % 2 == 0;
 
-            Assert.Equal(2, evenNumbers.First(IsEven));
+            Assert.Equal(4, evenNumbers.First(IsEven));
         }
     }
 }

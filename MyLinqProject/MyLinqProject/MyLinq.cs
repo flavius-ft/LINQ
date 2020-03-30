@@ -43,7 +43,20 @@ namespace MyLinqProject
 
         public static TSource First<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
+            if (source == null || predicate == null)
+            {
+                throw new ArgumentNullException("source");
+            }
 
+            foreach (var elem in source)
+            {
+                if (predicate(elem))
+                {
+                    return elem;
+                }
+            }
+
+            throw new InvalidOperationException();
         }
     }
 }
