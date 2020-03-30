@@ -22,5 +22,14 @@ namespace MyLinqProject
 
             Assert.True(elements.Any(IsEven));
         }
+
+        [Fact]
+        public void GetFirstElementWhoIsEven()
+        {
+            int[] evenNumbers = { 1, 4, 5, 8 };
+            bool IsEven(int element) => element % 2 == 0;
+
+            Assert.Equal(2, evenNumbers.First(IsEven));
+        }
     }
 }

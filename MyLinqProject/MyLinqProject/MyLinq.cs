@@ -7,7 +7,7 @@ namespace MyLinqProject
     {
         public static bool All<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
-            if (source == null)
+            if (source == null || predicate == null)
             {
                 throw new ArgumentNullException("source");
             }
@@ -25,7 +25,7 @@ namespace MyLinqProject
 
         public static bool Any<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
-            if (source == null)
+            if (source == null || predicate == null)
             {
                 throw new ArgumentNullException("source");
             }
@@ -39,6 +39,11 @@ namespace MyLinqProject
             }
 
             return false;
+        }
+
+        public static TSource First<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
+        {
+
         }
     }
 }
