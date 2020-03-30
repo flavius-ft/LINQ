@@ -25,6 +25,20 @@ namespace MyLinqProject
 
         public static bool Any<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            foreach (var elem in source)
+            {
+                if (predicate(elem))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
