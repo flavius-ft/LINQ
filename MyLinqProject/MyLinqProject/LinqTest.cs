@@ -12,5 +12,15 @@ namespace MyLinqProject
 
             Assert.True(evenNumbers.All(IsEven));
         }
+
+        [Fact]
+        public void CheckIfAnyElementREspectTheCondition()
+        {
+            int[] elements = { 1, 4, 5, 9 };
+
+            bool IsEven(int element) => element % 2 == 0;
+
+            Assert.True(elements.Any(IsEven));
+        }
     }
 }

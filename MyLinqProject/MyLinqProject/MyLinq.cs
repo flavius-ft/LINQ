@@ -22,5 +22,9 @@ namespace MyLinqProject
 
             return true;
         }
+
+        public static bool Any<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
+        {
+        }
     }
 }
