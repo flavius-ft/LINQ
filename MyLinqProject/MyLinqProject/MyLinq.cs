@@ -58,5 +58,18 @@ namespace MyLinqProject
 
             throw new InvalidOperationException();
         }
+
+        public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+        {
+            if (source == null || selector == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            foreach (var elem in source)
+            {
+                yield return selector(elem);
+            }
+        }
     }
 }

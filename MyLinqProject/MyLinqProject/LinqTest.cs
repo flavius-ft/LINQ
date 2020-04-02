@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace MyLinqProject
@@ -86,6 +87,17 @@ namespace MyLinqProject
             bool IsEven(int element) => element % 2 == 0;
 
             Assert.Throws<InvalidOperationException>(() => evenNumbers.First(IsEven));
+        }
+
+        [Fact]
+        public void SelectElementsFromAnEnumerationIntoAnOtherForm()
+        {
+            int[] numbers = { 3, 5 };
+
+            IEnumerable<int> result = numbers.Select(x => x * x);
+            bool AreEven(int element) => element % 2 == 0;
+
+            Assert.True(result.All(AreEven));
         }
     }
 }
