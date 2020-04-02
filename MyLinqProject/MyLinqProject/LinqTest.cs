@@ -94,7 +94,7 @@ namespace MyLinqProject
         {
             int[] numbers = { 3, 5 };
 
-            IEnumerable<int> result = numbers.Select(x => x * x);
+            IEnumerable<int> result = numbers.Select(x => x * 2);
             bool AreEven(int element) => element % 2 == 0;
 
             Assert.True(result.All(AreEven));

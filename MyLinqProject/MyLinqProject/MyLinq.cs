@@ -66,10 +66,17 @@ namespace MyLinqProject
                 throw new ArgumentNullException("source");
             }
 
+            int i = 0;
+            TResult[] result = new TResult[0];
+
             foreach (var elem in source)
             {
-                yield return selector(elem);
+                Array.Resize(ref result, result.Length + 1);
+                result[i] = selector(elem);
+                i++;
             }
+
+            return result;
         }
     }
 }
