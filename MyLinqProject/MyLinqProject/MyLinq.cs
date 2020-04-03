@@ -71,5 +71,21 @@ namespace MyLinqProject
                 yield return selector(elem);
             }
         }
+
+        public static IEnumerable<TResult> SelectMany<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, IEnumerable<TResult>> selector)
+        {
+            if (source == null || selector == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            foreach (IEnumerable<TSource> elements in source)
+            {
+                foreach (TSource element in elements)
+                {
+                    yield return selector(element);
+                }
+            }
+        }
     }
 }
