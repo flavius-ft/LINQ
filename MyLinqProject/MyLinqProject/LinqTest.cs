@@ -99,5 +99,29 @@ namespace MyLinqProject
 
             Assert.True(result.All(AreEven));
         }
+
+        [Fact]
+        public void SelectManyElementsFromAnEnumerationAndReturnSpecificSelection()
+        {
+            PetOwner[] petOwners =
+                   {
+                        new PetOwner
+                    {
+                         Name = "Higa, Sidney",
+                         Pets = new List<string> { "Scruffy", "Sam" }
+                    },
+                        new PetOwner
+                     {
+                         Name = "Ashkenazi, Ronen",
+                         Pets = new List<string> { "Walker", "Sugar" }
+                     }
+                   };
+
+            var compare = new List<string> { "Scruffy", "Sam", "Walker", "Sugar" };
+
+            IEnumerable<string> result = petOwners.SelectMany(petOwner => petOwner.Pets);
+
+            Assert.Equal(compare, result);
+        }
     }
 }
