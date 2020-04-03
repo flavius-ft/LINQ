@@ -79,11 +79,11 @@ namespace MyLinqProject
                 throw new ArgumentNullException("source");
             }
 
-            foreach (IEnumerable<TSource> elements in source)
+            foreach (var element in source)
             {
-                foreach (TSource element in elements)
+                foreach (var result in selector(element))
                 {
-                    yield return selector(element);
+                      yield return result;
                 }
             }
         }
