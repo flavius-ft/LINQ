@@ -123,5 +123,22 @@ namespace MyLinqProject
 
             Assert.Equal(compare, result);
         }
+
+        [Fact]
+        public void WhereMethodReturnsElementsWhoSatisfyTheCondition()
+        {
+            List<string> fruits =
+                    new List<string>
+                    {
+                        "apple", "passionfruit", "banana", "mango",
+                        "orange", "blueberry", "grape", "strawberry"
+                    };
+
+            IEnumerable<string> result = fruits.Where(fruit => fruit.Length < 6);
+
+            List<string> answer = new List<string> { "apple", "mango", "grape" };
+
+            Assert.Equal(answer, result);
+        }
     }
 }

@@ -87,5 +87,21 @@ namespace MyLinqProject
                 }
             }
         }
+
+        public static IEnumerable<TSource> Where<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
+        {
+            if (source == null || predicate == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            foreach (var element in source)
+            {
+                if (predicate(element))
+                {
+                    yield return element;
+                }
+            }
+        }
     }
 }
