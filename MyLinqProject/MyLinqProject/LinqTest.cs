@@ -140,5 +140,31 @@ namespace MyLinqProject
 
             Assert.Equal(answer, result);
         }
+
+        [Fact]
+        public void ToDictionaryReturnsADictionaryOfAnEnumeration()
+        {
+            List<Delivery> packages =
+        new List<Delivery>
+            {
+              new Delivery { Company = "Coho Vineyard", TrackingNumber = 1 },
+              new Delivery { Company = "Lucerne Publishing", TrackingNumber = 2 },
+              new Delivery { Company = "Wingtip Toys", TrackingNumber = 3 },
+              new Delivery { Company = "Adventure Works", TrackingNumber = 4 }
+            };
+
+            Dictionary<int, string> dictionary =
+                packages.ToDictionary(key => key.TrackingNumber, element => element.Company);
+
+            Dictionary<int, string> toCompare = new Dictionary<int, string>
+            {
+                { 1, "Coho Vineyard" },
+                { 2, "Lucerne Publishing" },
+                { 3, "Wingtip Toys" },
+                { 4, "Adventure Works" }
+            };
+
+            Assert.Equal(toCompare, dictionary);
+        }
     }
 }

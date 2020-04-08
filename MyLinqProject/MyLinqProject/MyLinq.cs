@@ -103,5 +103,25 @@ namespace MyLinqProject
                 }
             }
         }
+
+        public static Dictionary<TKey, TElement> ToDictionary<TSource, TKey, TElement>(
+             this IEnumerable<TSource> source,
+             Func<TSource, TKey> keySelector,
+             Func<TSource, TElement> elementSelector)
+        {
+            if (source == null || keySelector == null || elementSelector == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            Dictionary<TKey, TElement> dictionary = new Dictionary<TKey, TElement>();
+
+            foreach (var elem in source)
+            {
+                dictionary.Add(keySelector(elem), elementSelector(elem));
+            }
+
+            return dictionary;
+        }
     }
 }
