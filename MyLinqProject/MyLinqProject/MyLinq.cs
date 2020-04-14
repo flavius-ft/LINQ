@@ -123,5 +123,45 @@ namespace MyLinqProject
 
             return dictionary;
         }
+
+        public static IEnumerable<TResult> Zip<TFirst, TSecond, TResult>(
+    this IEnumerable<TFirst> first,
+    IEnumerable<TSecond> second,
+    Func<TFirst, TSecond, TResult> resultSelector)
+        {
+            if (first == null || second == null)
+            {
+                throw new ArgumentNullException("first");
+            }
+
+            List<TFirst> firstE = new List<TFirst>();
+            List<TSecond> secondE = new List<TSecond>();
+
+            foreach (var firstElem in first)
+            {
+                firstE.Add(firstElem);
+            }
+
+            foreach (var secondElem in second)
+            {
+                secondE.Add(secondElem);
+            }
+
+            int count = 0;
+
+            if (firstE.Count > secondE.Count)
+            {
+                count = secondE.Count;
+            }
+            else
+            {
+                count = firstE.Count;
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                yield return resultSelector(firstE[i], secondE[i]);
+            }
+        }
     }
 }

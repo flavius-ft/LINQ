@@ -166,5 +166,16 @@ namespace MyLinqProject
 
             Assert.Equal(toCompare, dictionary);
         }
+
+        [Fact]
+        public void ZipMethodReturnsCorespondingEnumeration()
+        {
+            int[] numbers = { 1, 2, 3 };
+            string[] words = { "one", "two", "three", "four" };
+
+            object[] result = { "1 one", "2 two", "3 three" };
+
+            Assert.Equal(result, numbers.Zip(words, (first, second) => first + " " + second));
+        }
     }
 }
