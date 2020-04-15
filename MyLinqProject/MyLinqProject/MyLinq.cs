@@ -134,33 +134,12 @@ namespace MyLinqProject
                 throw new ArgumentNullException("first");
             }
 
-            List<TFirst> firstE = new List<TFirst>();
-            List<TSecond> secondE = new List<TSecond>();
+            var firstE = first.GetEnumerator();
+            var secondE = second.GetEnumerator();
 
-            foreach (var firstElem in first)
+            while (firstE.MoveNext() && secondE.MoveNext())
             {
-                firstE.Add(firstElem);
-            }
-
-            foreach (var secondElem in second)
-            {
-                secondE.Add(secondElem);
-            }
-
-            int count = 0;
-
-            if (firstE.Count > secondE.Count)
-            {
-                count = secondE.Count;
-            }
-            else
-            {
-                count = firstE.Count;
-            }
-
-            for (int i = 0; i < count; i++)
-            {
-                yield return resultSelector(firstE[i], secondE[i]);
+                yield return resultSelector(firstE.Current, secondE.Current);
             }
         }
     }
