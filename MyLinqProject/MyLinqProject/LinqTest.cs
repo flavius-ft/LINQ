@@ -177,5 +177,16 @@ namespace MyLinqProject
 
             Assert.Equal(result, numbers.Zip(words, (first, second) => first + " " + second));
         }
+
+        [Fact]
+        public void AgreggateMethodApliedOnNUmbersArrayReturnsHowManyEvenNumbersAre()
+        {
+            int[] ints = { 4, 8, 8, 3, 9, 0, 7, 8, 2 };
+
+            int numEven = ints.Aggregate(0, (total, next) =>
+                                                next % 2 == 0 ? total + 1 : total);
+
+            Assert.Equal(6, numEven);
+        }
     }
 }

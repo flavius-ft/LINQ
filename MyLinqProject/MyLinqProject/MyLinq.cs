@@ -142,5 +142,23 @@ namespace MyLinqProject
                 yield return resultSelector(firstE.Current, secondE.Current);
             }
         }
+
+        public static TAccumulate Aggregate<TSource, TAccumulate>(
+    this IEnumerable<TSource> source,
+    TAccumulate seed,
+    Func<TAccumulate, TSource, TAccumulate> func)
+        {
+            if (source == null || func == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            foreach (var elem in source)
+            {
+                seed = func(seed, elem);
+            }
+
+            return seed;
+        }
     }
 }
